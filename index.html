@@ -3,353 +3,992 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <title>Clain Mursoi</title>
+    <title>Clain Kiplimo Mursoi - AI Engineer & Software Wizard</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Matrix Background Animation */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+        }
+
+        .matrix-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(120, 255, 198, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(120, 119, 198, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7877c6;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #7877c6;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            padding-top: 100px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .mobile-nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            width: 200px;
+            text-align: center;
+        }
+
+        .mobile-nav-links a:hover {
+            color: #7877c6;
+            border-color: #7877c6;
+            background: rgba(120, 119, 198, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #7877c6, #ff77c6, #77ffc6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #7877c6, #ff77c6);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #7877c6;
+            border: 2px solid #7877c6;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(120, 119, 198, 0.3);
+        }
+
+        .hero-image {
+            flex: 0 0 300px;
+        }
+
+        .profile-pic {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 4px solid #7877c6;
+            object-fit: cover;
+            box-shadow: 0 0 50px rgba(120, 119, 198, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #7877c6;
+        }
+
+        /* About Section */
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(120, 119, 198, 0.3);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(120, 119, 198, 0.2);
+            border-color: #7877c6;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff77c6;
+        }
+
+        .project-card p {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(120, 119, 198, 0.2);
+            color: #7877c6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: #77ffc6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .project-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(120, 119, 198, 0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            border-color: #7877c6;
+        }
+
+        .skill-item .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #ff77c6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(120, 119, 198, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #7877c6;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(120, 119, 198, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #7877c6;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(120, 119, 198, 0.3);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: #7877c6;
+            transform: translateX(10px);
+        }
+
+        .contact-item .icon {
+            font-size: 1.5rem;
+            color: #ff77c6;
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #7877c6;
+        }
+
+        /* Resume Section */
+        .resume-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(120, 119, 198, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                gap: 2rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .hero-image {
+                flex: none;
+            }
+
+            .profile-pic {
+                width: 200px;
+                height: 200px;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 0.75rem;
+            }
+
+            .skill-item {
+                padding: 1rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 0.9rem;
+            }
+
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+
+            .section h2 {
+                font-size: 1.75rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .skill-item .skill-icon {
+                font-size: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #7877c6;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #7877c6; }
+        }
+    </style>
 </head>
 <body>
-    <nav id="desktop-nav">
-        <div class="logo"  data-aos="fade-up"   data-aos-duration="1000">Clain Mursoi</div>
-        <div class="nav"  data-aos="fade-up"   data-aos-duration="1000">
+    <!-- Matrix Background -->
+    <div class="matrix-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Clain.dev</a>
+            <!-- Alternative options you can use:
+                 <a href="#" class="logo">Clain Mursoi</a>
+                 <a href="#" class="logo">CM</a>
+                 <a href="#" class="logo">ClainM</a>
+                 <a href="#" class="logo">&lt;Clain/&gt;</a>
+            -->
+            
+            <!-- Desktop Navigation -->
             <ul class="nav-links">
-                <li><a href="#about"> About</a></li>
-                <li><a href="#skill"> Skill's</a></li>
-                <li><a href="#projects"> Projects</a></li>
-                <li><a href="#contact"> contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            
+            <!-- Mobile Hamburger Menu -->
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
-    <nav id="hamburger-nav">
-        <div class="logo"  data-aos="fade-up"   data-aos-duration="1000">Clain Mursoi</div>
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-          </div>
-          <div class="menu-links"  data-aos="fade-up"   data-aos-duration="1000">
-            <li><a href="#about" onclick="toggleMenu()"> About</a></li>
-            <li><a href="#skill" onclick="toggleMenu()"> experince</a></li>
-            <li><a href="#projects" onclick="toggleMenu()"> projects</a></li>
-            <li><a href="#contact" onclick="toggleMenu()"> contact</a></li>
 
-          </div>
-        </div>
-        
-    </nav>
-    <section id="profile">
-        <div class="section_pic-container"  data-aos="fade-up"   data-aos-duration="1000">
-            <img src="profile2.jpeg" alt="Clain Mursoi profile">
-        </div>
-        <div class="section_text">
-            <p class="section_text_p1"  data-aos="fade-up"   data-aos-duration="1000">Hello I'am</p>
-            <h1 class="title"  data-aos="fade-up"   data-aos-duration="1000">Clain Mursoi</h1>
-            <p class="section_text_p2"  data-aos="fade-up"   data-aos-duration="1000">Software & AI Engineer</p>
-            <div class="btn-container"  data-aos="fade-up"   data-aos-duration="1000">
-               
-                <button class="btn btn-color-2"  onclick="window.open('')">
-                    Download CV</button>
-                <button class="btn btn-color-1"  onclick="location.href='./contact'">
-                    Contact Info</button>
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+            <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+            <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm Clain Mursoi</h1>
+                <p class="typing-text">AI Engineer & Software Wizard. I automate systems, build LLM agents, and bring ideas to life with intelligent code.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#resume" class="btn btn-secondary">Download Resume</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
             </div>
-            <div id="social-container"  data-aos="fade-up"   data-aos-duration="1000">
-                <img src="linkedin.png" alt="mylinkled in profile" class="icon" onclick="location.href='https://linkedin.com/'">
-                <img src="github-logo.png" alt="github in profile" class="icon" onclick="location.href='https://github.com/'">
+            <div class="hero-image">
+                <!-- Replace 'your-profile-picture.jpg' with your actual image file -->
+                <img src="profile2.jepg" alt="Clain Mursoi" class="profile-pic">
+                <!-- Example: <img src="./clain-profile.jpg" alt="Clain Mursoi" class="profile-pic"> -->
             </div>
         </div>
-        
     </section>
-    <!-- about -->
-    <section id="about">
-        <p class="section_text_p1"  data-aos="fade-up"   data-aos-duration="1000">Get To Know More</p>
-        <h1 class="title" data-aos="fade-up"   data-aos-duration="1000">About Me</h1>
-        <div class="section-container">
-            <div class="section_pic-container"  data-aos="fade-up"   data-aos-duration="1000">
-            <img src="about.png" alt="profile pic"
-             class="about-pic"/>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>I'm an AI and Software Engineer passionate about automation, machine intelligence, and making tech work smarter. Currently completing my BSc. in Computer Science at Karatina University, I've already built systems that replace manual processes with smart, cost-saving LLM agents.</p>
+            <br>
+            <p>I'm based in Nairobi and open to opportunities in AI engineering and full-stack development. My focus is on creating intelligent solutions that bridge the gap between complex technology and practical business needs.</p>
         </div>
-        <div class="about-details-container">
-            <div class="about-containers">
-                <div class="detailes-container"  data-aos="fade-up"   data-aos-duration="1000">
-                    <img src="quality.png" alt="expiernce" class="icon"  data-aos="fade-up"   data-aos-duration="1000"/>
-                    <h3  data-aos="fade-up"   data-aos-duration="1000">Experince</h3>
-                    <p  data-aos="fade-up"   data-aos-duration="1000">Fresher<br>Software & AI Engineer</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>🛍️ AI-Powered E-Commerce Platform</h3>
+                <p>Revolutionary e-commerce platform with AI chat interface for product discovery and an admin panel powered by LLM agents. Users can naturally chat with AI to find products, while admins can query the database using natural language without SQL knowledge.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">OpenAI API</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">SQL</span>
                 </div>
-                <div class="detailes-container"  data-aos="fade-up"   data-aos-duration="1000">
-                    <img src="education.png" alt="expiernce" class="icon"  data-aos="fade-up"   data-aos-duration="1000"/>
-                    <h3  data-aos="fade-up"   data-aos-duration="1000">Education</h3>
-                    <p  data-aos="fade-up"   data-aos-duration="1000">4 Years<br>Bachaleor Of Science in Computer Science</p>
+                <div class="project-links">
+                    <a href="#">🔗 Live Demo</a>
+                    <a href="#">📚 GitHub Repo</a>
                 </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>🤖 LLM Agent for Natural Language to SQL</h3>
+                <p>Intelligent system that converts natural language queries into SQL commands, enabling non-technical users to interact with databases effortlessly. Flexible architecture allows integration into various business applications across different industries.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">OpenAI API</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">FastAPI</span>
                 </div>
-                <div class="text-container">
-                    <p  data-aos="fade-up"   data-aos-duration="1000">Hello, i'm Clain Mursoi a 4th year student at Karatina University taking a degree in Computer Science. Having a strong mathematical and Computer programming foundation, i'm interested in Software & AI Engineering. I have Skills in Software Development, AI, Database management, Cluod Computing, Cyber Security and Networking. Whenever needed, i am available and ready to apply my skills to solve real world problems. Let's collaborate and embrace Technology!</p>
+                <div class="project-links">
+                    <a href="#">🔗 Live Demo</a>
+                    <a href="#">📚 GitHub Repo</a>
                 </div>
             </div>
         </div>
-        <img src="arrow.png" alt="arrow" class="icon arrow"
-        onclick="location.href='#skill'"/>
     </section>
-    <!-- skills -->
-    <section id="skill">
-        <p class="section_text_p1"  data-aos="fade-up"   data-aos-duration="1000">Explore My</p>
-        <h1 class="title"  data-aos="fade-up"   data-aos-duration="1000">Skill's</h1>
-        <div class="skill-details-container"> 
-            <div class="about-containers">
-                <div class="detailes-container" data-aos="fade-up"   data-aos-duration="1000">
-                    <h2 class="skill-sub-title"  data-aos="fade-up"   data-aos-duration="1000">Software Engineering</h2>
-                    <div class="article-container"  data-aos="fade-up"   data-aos-duration="1000">
-                        <article>
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">C/C++</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Experince</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">JAVA</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Experince</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3   data-aos="fade-up"   data-aos-duration="1000">PYTHON</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Intermedia</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">C#</h3>
-                            <p   data-aos="fade-up"   data-aos-duration="1000"> Experince</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">RUST</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Intermedia</p>
-                        </div>
-                            
-                        </article>
 
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2>Tech Stack</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-icon">🐍</div>
+                <div>Python</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">⚛️</div>
+                <div>React</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🟢</div>
+                <div>Node.js</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🤖</div>
+                <div>OpenAI API</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🔗</div>
+                <div>LangChain</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🗄️</div>
+                <div>PostgreSQL</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🐳</div>
+                <div>Docker</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🔧</div>
+                <div>REST APIs</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🐧</div>
+                <div>Linux</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📱</div>
+                <div>JavaScript</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🔄</div>
+                <div>Git</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">⚡</div>
+                <div>Bash</div>
+            </div>
+        </div>
+    </section>
 
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">JAVASCRIPT</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Experince</p>
-                        </div>
-                            
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">HTML/CSS</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Experince</p>
-                        </div>
-                            
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">TYPESCRIPT</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Experince</p>
-                        </div>
-                            
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">SQL & NoSQ</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Experince</p>
-                        </div>
-                            
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">SWIFT & DART</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Experince</p>
-                        </div>
-                            
-                        </article>
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <h2>Resume & CV</h2>
+        <div class="resume-buttons">
+            <a href="#" class="btn btn-primary">📄 Download Resume PDF</a>
+            <a href="#" class="btn btn-secondary">📋 Download CV PDF</a>
+        </div>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Contact Me</h2>
+        <div class="contact-content">
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon">📧</span>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:clainkiplimo1@gmail.com">clainkiplimo1@gmail.com</a>
                     </div>
                 </div>
-                <!-- backend -->
-                <div class="detailes-container"  data-aos="fade-up"   data-aos-duration="1000">
-                    <h2 class="skill-sub-title"  data-aos="fade-up"   data-aos-duration="1000">AI Engineering</h2>
-                    <div class="article-container">
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">Machine Learning</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000"> PyTorch, TensorFlow, Keras</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">Natural Language Processing</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Hugging Face Transformers, NLTK, SpaCy</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">Computer Vision</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Open CV, YOLO, Detectron2</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">Big Data Technilogies</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Apache Spark, Hadoop</p>
-                        </div>
-                        </article>
-                       <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">Cloud AI</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000">Google AI Platform, AWS SageMaker, Azure Machine Learning</p>
-                        </div>
-                        </article>
-
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">Reinforcement Learning</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000"> OpenAI Gym, Ray RLlib</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">Graph Neural Network</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000"> PyTorch Geometric, DGL</p>
-                        </div>
-                        </article>
-                        <article  data-aos="fade-up"   data-aos-duration="1000">
-                            <img src="check-mark.png" alt="check" class="icon"/>
-                        <div>
-                            <h3  data-aos="fade-up"   data-aos-duration="1000">AI Hardware</h3>
-                            <p  data-aos="fade-up"   data-aos-duration="1000"> NVIDIA GPUs, TPUs</p>
-                        </div>
-                        </article>
-                        
-
-                       
-
+                
+                <div class="contact-item">
+                    <span class="icon">📱</span>
+                    <div>
+                        <strong>Phone</strong><br>
+                        <a href="tel:+254707383703">+254 707 383 703</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="icon">💬</span>
+                    <div>
+                        <strong>WhatsApp</strong><br>
+                        <a href="https://wa.me/254707383703?text=Hi%20Clain,%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank">Start Chat</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="icon">🧑‍💼</span>
+                    <div>
+                        <strong>LinkedIn</strong><br>
+                        <a href="#" target="_blank">Connect on LinkedIn</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="icon">🖥️</span>
+                    <div>
+                        <strong>GitHub</strong><br>
+                        <a href="#" target="_blank">View My Code</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <div>
+                        <strong>Location</strong><br>
+                        <span>Nairobi, Kenya</span>
                     </div>
                 </div>
             </div>
         </div>
-        <img src="arrow.png" alt="arrow" class="icon arrow"
-        onclick="location.href='#projects'"/>
     </section>
-    <!-- projects -->
-    <section id="projects">
-        <p class="section_text_p1"  data-aos="fade-up"   data-aos-duration="1000">Browse My Recent</p>
-        <h1 class="title"  data-aos="fade-up"   data-aos-duration="1000">Projects</h1>
-        <div class="skill-details-container">
-            <div class="about-containers">
-            <div class="detailes-container color-container">
-                <div class="article-container"  data-aos="fade-up"   data-aos-duration="1000">
-                    <img
-                    src="project1.jpg" alt="project1" class="project-img">
 
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Clain Kiplimo Mursoi. Built with passion for AI and elegant code.</p>
+    </footer>
 
-                </div>
-                <h2 class="skill-sub-title project-title"  data-aos="fade-up"   data-aos-duration="1000">E-commerce  Website</h2>
-            <div class="btn-container"   data-aos="fade-up" >
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Janardhannaik/Online-Shopping-Swiffy'">
-                Git Hub</button>
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://janardhannaik.github.io/Online-Shopping-Swiffy/'">
-                    live Demo</button>
-            </div>
-            </div>
-            <div class="detailes-container color-container">
-                <div class="article-container"  data-aos="fade-up"   data-aos-duration="1000">
-                    <img
-                    src="project2.jpg" alt="project1" class="project-img">
-
-
-                </div>
-                <h2 class="skill-sub-title project-title"   data-aos="fade-up"   data-aos-duration="1000">Quiz App Website</h2>
-            <div class="btn-container"  data-aos="fade-up">
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Janardhannaik/quizz-App'">
-                Git Hub</button>
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://janardhannaik.github.io/quizz-App/'">
-                    live Demo</button>
-            </div>
-            </div>
-            <div class="detailes-container color-container">
-                <div class="article-container"  data-aos="fade-up"   data-aos-duration="1000">
-                    <img
-                    src="project3.jpg" alt="project1" class="project-img">
-
-
-                </div>
-                <h2 class="skill-sub-title project-title"  data-aos="fade-up"   data-aos-duration="1000">Bike Rent Website</h2>
-            <div class="btn-container"  data-aos="fade-up" >
-                <button class="btn btn-color-2 profile-btn" onclick="location.href='https://github.com/Janardhannaik/Royal-Enfild-Rent-Bikes'">
-                Git Hub</button>
-                <button class="btn btn-color-2 profile-btn" onclick="location.href='https://janardhannaik.github.io/Royal-Enfild-Rent-Bikes/'" target="_blank">
-                    live Demo</button>
-            </div>
-            </div>
-            </div>
-        </div>
-        
-        <img src="arrow.png" alt="arrow" class="icon arrow"
-        onclick="location.href='#contact'"/>
-    </section>
-    <!-- contact -->
-    <section id="contact">
-        <p class="section_text_p1"  data-aos="fade-up"   data-aos-duration="1000">Get in Touch</p>
-        <h1 class="title"  data-aos="fade-up"   data-aos-duration="1000">contact me</h1>
-        <div class="contact-info-upper-container">
-            <div class="contact-info-container"  data-aos="fade-up"   data-aos-duration="1000">
-                <img src="email.png" alt="emailicon" class="icon  contact-icon"/>
-                <p><a href="mailto:clainkiplimo2@gmail.com"  data-aos="fade-up"   data-aos-duration="1000">clainkiplimo2@gmail.com</a></p>
-            </div>
-        
-      
-            <div class="contact-info-container"  data-aos="fade-up"   data-aos-duration="1000"> 
-                <img src="linkedin.png" alt="emailicon" class="icon  contact-icon"/>
-                <p><a href=" https://www.linkedin.com/in/clain-mursoi">Linked in</a></p>
-            </div>
-            <div class="contact-info-container"  data-aos="fade-up"   data-aos-duration="1000">
-                <img src="whatsapp (1).png" alt="Whatsapp-icon" class="icon  contact-icon"/>
-                <p><a href=" https://wa.me/254707383703">Whatsapp</a></p>
-            </div>
-        </div>
-        </section>
-        <!-- footer -->
-        <footer>
-            <nav>
-                <div class="nav-links-container"  data-aos="fade-up"   data-aos-duration="1000">
-                            <ul class="nav-links"  data-aos="fade-up"   data-aos-duration="1000">
-                            <li><a href="#about"> About</a></li>
-                            <li><a href="#skill"> Skill's</a></li>
-                            <li><a href="#projects"> Projects</a></li>
-                            <li><a href="#contact"> contact</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </nav>
-            <p  data-aos="fade-up"   data-aos-duration="1000">Copyright &#169; 2024 Clain Mursoi. All Right's Reserved.</p>
-        </footer>
-    
-    <script src="script.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init();
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileNav.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Create email content
+            const subject = `Portfolio Contact from ${name}`;
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            
+            // Open email client
+            window.location.href = `mailto:clainkiplimo1@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            alert('Opening your email client to send the message!');
+            this.reset();
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.project-card, .skill-item, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
